@@ -1,5 +1,7 @@
 # FileInfo4AI (IntelliJ Platform Plugin)
 
+[![CI](https://github.com/LiushuiXiaoxia/FileInfo4AI/actions/workflows/ci.yml/badge.svg)](https://github.com/LiushuiXiaoxia/FileInfo4AI/actions/workflows/ci.yml)
+
 [中文版](README-CN.md)
 
 FileInfo4AI is an IntelliJ IDEA / Android Studio plugin designed to quickly collect and format file metadata. It is especially useful when providing context to AI coding assistants or communicating with team members.
