@@ -1,117 +1,73 @@
-# IntelliJ Platform Plugin Template
+# Ai-file-ref (IntelliJ Platform Plugin)
 
-[![Twitter Follow](https://img.shields.io/badge/follow-%40JBPlatform-1DA1F2?logo=twitter)](https://twitter.com/JBPlatform)
-[![Developers Forum](https://img.shields.io/badge/JetBrains%20Platform-Join-blue)][jb:forum]
+[中文版](README-CN.md)
 
-## Plugin template structure
+Ai-file-ref is an IntelliJ IDEA / Android Studio plugin designed to quickly collect and format file metadata. It is especially useful when providing context to AI coding assistants or communicating with team members.
 
-A generated project contains the following content structure:
+## Features
 
+This plugin allows you to quickly copy essential file information into your clipboard with a single click.
+
+### Copied Information Includes
+- File Name
+- Relative Path (relative to project root)
+- Absolute Path
+- File Type
+- File Size
+- Last Modified Time
+- Total Lines
+- File Encoding
+- **Selected Lines** (When using the line-selection feature)
+
+### How to Use
+
+There are three ways to access the feature:
+
+1. **Tool Window**
+   - Open a file in your editor.
+   - Open the **FileRef** tool window on the right side of the IDE.
+   - Click the **"复制文件信息" (Copy File Info)** button.
+
+2. **Floating Code Toolbar**
+   - Select a block of text/code in your editor.
+   - Click the **"复制选中行文件信息" (Copy Selected Lines Info)** icon appearing in the floating toolbar above the selection.
+
+3. **Editor Context Menu**
+   - Select a block of text/code in your editor.
+   - Right-click and choose **"复制选中行文件信息" (Copy Selected Lines Info)** from the context menu.
+
+## Example Output
+
+**Without selection:**
+```text
+文件名: FileInfoCollector.kt
+相对路径: /src/main/kotlin/.../FileInfoCollector.kt
+绝对路径: /Users/leon/.../FileInfoCollector.kt
+文件类型: Kotlin
+文件大小: 2.6 KB
+最后修改时间: 2026-03-08 14:30:00
+行数: 86
+文件编码: UTF-8
 ```
-.
-├── .run/                   Predefined Run/Debug Configurations
-├── build/                  Output build directory
-├── gradle
-│   ├── wrapper/            Gradle Wrapper
-├── src                     Plugin sources
-│   ├── main
-│   │   ├── kotlin/         Kotlin production sources
-│   │   └── resources/      Resources - plugin.xml, icons, messages
-├── .gitignore              Git ignoring rules
-├── build.gradle.kts        Gradle build configuration
-├── gradle.properties       Gradle configuration properties
-├── gradlew                 *nix Gradle Wrapper script
-├── gradlew.bat             Windows Gradle Wrapper script
-├── README.md               README
-└── settings.gradle.kts     Gradle project settings
+
+**With text selection (`FileLineSelectInfoAction`):**
+```text
+@/src/main/kotlin/dev/leonxia/aifileref/FileLineSelectInfoAction.kt#L15-20
 ```
 
-In addition to the configuration files, the most crucial part is the `src` directory, which contains our implementation
-and the manifest for our plugin – [plugin.xml][file:plugin.xml].
+## Development & Build
 
-> [!NOTE]
-> To use Java in your plugin, create the `/src/main/java` directory.
+This plugin is built using the Gradle IntelliJ Plugin and Compose Multiplatform for the Tool Window UI.
 
-## Plugin configuration file
+```bash
+# Run the plugin in a sandbox IDE
+./gradlew runIde
 
-The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF`
-directory.
-It provides general information about the plugin, its dependencies, extensions, and listeners.
+# Build the plugin distribution (generates ZIP in build/distributions)
+./gradlew buildPlugin
+```
 
-You can read more about this file in the [Plugin Configuration File][docs:plugin.xml] section of our documentation.
+## Compatibility
 
-If you're still not quite sure what this is all about, read our
-introduction: [What is the IntelliJ Platform?][docs:intro]
-
-$H$H Predefined Run/Debug configurations
-
-Within the default project structure, there is a `.run` directory provided containing predefined *Run/Debug
-configurations* that expose corresponding Gradle tasks:
-
-| Configuration name | Description                                                                                                                                                                         |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Run Plugin         | Runs [`:runIde`][gh:intellij-platform-gradle-plugin-runIde] IntelliJ Platform Gradle Plugin task. Use the *Debug* icon for plugin debugging.                                        |
-| Run Tests          | Runs [`:test`][gradle:lifecycle-tasks] Gradle task.                                                                                                                                 |
-| Run Verifications  | Runs [`:verifyPlugin`][gh:intellij-platform-gradle-plugin-verifyPlugin] IntelliJ Platform Gradle Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
-
-> [!NOTE]
-> You can find the logs from the running task in the `idea.log` tab.
-
-## Publishing the plugin
-
-> [!TIP]
-> Make sure to follow all guidelines listed in [Publishing a Plugin][docs:publishing] to follow all recommended and
-> required steps.
-
-Releasing a plugin to [JetBrains Marketplace](https://plugins.jetbrains.com) is a straightforward operation that uses
-the `publishPlugin` Gradle task provided by
-the [intellij-platform-gradle-plugin][gh:intellij-platform-gradle-plugin-docs].
-
-You can also upload the plugin to the [JetBrains Plugin Repository](https://plugins.jetbrains.com/plugin/upload)
-manually via UI.
-
-## Useful links
-
-- [IntelliJ Platform SDK Plugin SDK][docs]
-- [IntelliJ Platform Gradle Plugin Documentation][gh:intellij-platform-gradle-plugin-docs]
-- [IntelliJ Platform Explorer][jb:ipe]
-- [JetBrains Marketplace Quality Guidelines][jb:quality-guidelines]
-- [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
-- [JetBrains Marketplace Paid Plugins][jb:paid-plugins]
-- [IntelliJ SDK Code Samples][gh:code-samples]
-
-[docs]: https://plugins.jetbrains.com/docs/intellij
-
-[docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
-
-[docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
-
-[docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
-
-[file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
-
-[gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
-
-[gh:intellij-platform-gradle-plugin]: https://github.com/JetBrains/intellij-platform-gradle-plugin
-
-[gh:intellij-platform-gradle-plugin-docs]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
-
-[gh:intellij-platform-gradle-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-tasks.html#runIde
-
-[gh:intellij-platform-gradle-plugin-verifyPlugin]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-tasks.html#verifyPlugin
-
-[gradle:lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-
-[jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
-
-[jb:forum]: https://platform.jetbrains.com/
-
-[jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
-
-[jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
-
-[jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
-
-[jb:ipe]: https://jb.gg/ipe
-
-[jb:ui-guidelines]: https://jetbrains.github.io/ui
+- **IDE:** IntelliJ IDEA, Android Studio, and other IntelliJ-based IDEs.
+- **Minimum Build:** `252.25557` (IntelliJ IDEA 2025.2+)
