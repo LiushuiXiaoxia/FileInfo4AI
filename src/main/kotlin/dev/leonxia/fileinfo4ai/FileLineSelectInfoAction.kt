@@ -38,7 +38,7 @@ class FileLineSelectInfoAction : AnAction() {
 
         // 显示通知
         NotificationGroupManager.getInstance()
-            .getNotificationGroup("FileRef.Notification")
+            .getNotificationGroup("FileInfo4AI.Notification")
             .createNotification("带行号的文件信息已复制到剪切板", NotificationType.INFORMATION)
             .notify(project)
     }

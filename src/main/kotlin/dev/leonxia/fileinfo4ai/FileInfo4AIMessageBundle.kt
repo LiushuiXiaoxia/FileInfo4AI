@@ -5,10 +5,10 @@ import org.jetbrains.annotations.Nls
 import org.jetbrains.annotations.PropertyKey
 import java.util.function.Supplier
 
-private const val BUNDLE = "messages.FileRefMessageBundle"
+private const val BUNDLE = "messages.FileInfo4AIMessageBundle"
 
-internal object FileRefMessageBundle {
-    private val instance = DynamicBundle(FileRefMessageBundle::class.java, BUNDLE)
+internal object FileInfo4AIMessageBundle {
+    private val instance = DynamicBundle(FileInfo4AIMessageBundle::class.java, BUNDLE)
 
     @JvmStatic
     fun message(key: @PropertyKey(resourceBundle = BUNDLE) String, vararg params: Any?): @Nls String {
