@@ -27,15 +27,11 @@ class FileLineSelectInfoAction : AnAction() {
         val startLine = editor.document.getLineNumber(selectionModel.selectionStart) + 1
         val endLine = editor.document.getLineNumber(selectionModel.selectionEnd) + 1
         
-        // 组装最终文本
-        val finalFormatted = buildString {
-            append(formatted)
-            appendLine()
-            if (startLine == endLine) {
-                append("选中行: $startLine")
-            } else {
-                append("选中行: $startLine-$endLine")
-            }
+        // 组装最终文本: @{相对路径}#L{开始行号}-{结束行号}
+        val finalFormatted = if (startLine == endLine) {
+            "@${info.relativePath}#L$startLine "
+        } else {
+            "@${info.relativePath}#L$startLine-$endLine "
         }
 
         CopyPasteManager.getInstance().setContents(StringSelection(finalFormatted))
