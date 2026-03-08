@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.intellij.openapi.project.Project
@@ -21,7 +23,7 @@ class MyToolWindowFactory : ToolWindowFactory {
     override fun shouldBeAvailable(project: Project) = true
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        toolWindow.addComposeTab("My Tool Window", focusOnClickInside = true) {
+        toolWindow.addComposeTab("FileRef", focusOnClickInside = true) {
             LaunchedEffect(Unit) {
                 // initial data loading
             }
@@ -33,13 +35,15 @@ class MyToolWindowFactory : ToolWindowFactory {
 
 @Composable
 private fun MyToolWindowContent() {
-    val labelText = remember { mutableStateOf("The random number is: ?") }
+    var labelText by remember { mutableStateOf("The random number is: ?") }
 
     Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(labelText.value)
+        Text(labelText)
 
         OutlinedButton(onClick = {
-            labelText.value = "The random number is: " + Random(System.currentTimeMillis()).nextInt(1000)
-        }) { Text("Shuffle") }
+            labelText = "The random number is: " + Random(System.currentTimeMillis()).nextInt(1000)
+        }) {
+            Text("Copy")
+        }
     }
 }
