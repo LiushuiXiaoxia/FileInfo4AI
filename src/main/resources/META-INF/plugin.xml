@@ -22,11 +22,11 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.compose</depends>
 
-    <resource-bundle>messages.MyMessageBundle</resource-bundle>
+    <resource-bundle>messages.FileRefMessageBundle</resource-bundle>
     <!-- Extensions defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="MyToolWindow" factoryClass="dev.leonxia.aifileref.MyToolWindowFactory"
+        <toolWindow id="FileRefToolWindow" factoryClass="dev.leonxia.aifileref.FileRefToolWindowFactory"
                     icon="AllIcons.Toolwindows.ToolWindowPalette"/>
     </extensions>
 </idea-plugin>

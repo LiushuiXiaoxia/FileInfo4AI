@@ -25,18 +25,18 @@ import org.jetbrains.jewel.ui.component.OutlinedButton
 import org.jetbrains.jewel.ui.component.Text
 import java.awt.datatransfer.StringSelection
 
-class MyToolWindowFactory : ToolWindowFactory {
+class FileRefToolWindowFactory : ToolWindowFactory {
     override fun shouldBeAvailable(project: Project) = true
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         toolWindow.addComposeTab("FileRef", focusOnClickInside = true) {
-            MyToolWindowContent(project)
+            FileRefToolWindowContent(project)
         }
     }
 }
 
 @Composable
-private fun MyToolWindowContent(project: Project) {
+private fun FileRefToolWindowContent(project: Project) {
     val coroutineScope = rememberCoroutineScope()
     var fileInfoText by remember { mutableStateOf("") }
     var statusText by remember { mutableStateOf("打开一个文件后，点击按钮复制文件信息") }
