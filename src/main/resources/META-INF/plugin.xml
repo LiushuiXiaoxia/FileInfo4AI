@@ -22,17 +22,17 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.compose</depends>
 
-    <resource-bundle>messages.FileRefMessageBundle</resource-bundle>
+    <resource-bundle>messages.FileInfo4AIMessageBundle</resource-bundle>
     <!-- Extensions defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="FileRefToolWindow" factoryClass="dev.leonxia.fileinfo4ai.FileRefToolWindowFactory"
+        <toolWindow id="FileRefToolWindow" factoryClass="dev.leonxia.fileinfo4ai.FileInfo4AIToolWindowFactory"
                     icon="AllIcons.Toolwindows.ToolWindowPalette"/>
         
         <notificationGroup id="FileRef.Notification"
                            displayType="BALLOON"
                            key="notification.group.name"
-                           bundle="messages.FileRefMessageBundle"/>
+                           bundle="messages.FileInfo4AIMessageBundle"/>
     </extensions>
 
     <actions>
