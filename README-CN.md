@@ -72,11 +72,11 @@ FileInfo4AI 是一个为 IntelliJ IDEA 和 Android Studio 等 JetBrains 系列 I
 
 ## 安装指南
 
-你可以直接使用项目中已经构建好的 JAR 包安装插件：
-1. 找到项目根目录下 `releases/` 文件夹中的 `FileInfo4AI-0.0.1-base.jar` 文件。
+你可以直接从 GitHub Release 下载安装包：
+1. 前往 [Releases](https://github.com/LiushuiXiaoxia/FileInfo4AI/releases) 页面下载最新的 `.zip` 或 `.jar` 文件。
 2. 在你的 IDE 中，打开 **设置 (Settings / Preferences)** > **插件 (Plugins)**。
 3. 点击顶部的齿轮图标 ⚙️，选择 **从磁盘安装插件... (Install Plugin from Disk...)**。
-4. 选择刚才的 `FileInfo4AI-0.0.1-base.jar` 文件，安装后重启 IDE 即可生效。
+4. 选择刚才下载的文件，安装后重启 IDE 即可生效。
 
 ## 平台兼容性
 
