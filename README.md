@@ -67,6 +67,14 @@ This plugin is built using the Gradle IntelliJ Plugin and Compose Multiplatform 
 ./gradlew buildPlugin
 ```
 
+## Installation
+
+You can install the plugin directly from the provided jar file:
+1. Download or locate `releases/FileInfo4AI-0.0.1-base.jar`.
+2. In your IDE, go to **Settings/Preferences** > **Plugins**.
+3. Click the gear icon ⚙️ and select **Install Plugin from Disk...**.
+4. Choose the `FileInfo4AI-0.0.1-base.jar` file and restart your IDE.
+
 ## Compatibility
 
 - **IDE:** IntelliJ IDEA, Android Studio, and other IntelliJ-based IDEs.
