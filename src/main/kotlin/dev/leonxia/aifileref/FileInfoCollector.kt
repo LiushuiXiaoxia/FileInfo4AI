@@ -11,6 +11,7 @@ import java.util.Date
 data class FileInfo(
     val fileName: String,
     val relativePath: String,
+    val absolutePath: String,
     val fileType: String,
     val fileSize: Long,
     val lastModified: Long,
@@ -45,6 +46,7 @@ object FileInfoCollector {
         return FileInfo(
             fileName = file.name,
             relativePath = relativePath,
+            absolutePath = fullPath,
             fileType = file.fileType.name,
             fileSize = file.length,
             lastModified = file.timeStamp,
@@ -63,7 +65,8 @@ object FileInfoCollector {
 
         return buildString {
             appendLine("文件名: ${info.fileName}")
-            appendLine("文件路径: ${info.relativePath}")
+            appendLine("相对路径: ${info.relativePath}")
+            appendLine("绝对路径: ${info.absolutePath}")
             appendLine("文件类型: ${info.fileType}")
             appendLine("文件大小: $sizeText")
             appendLine("最后修改时间: $modifiedDate")
