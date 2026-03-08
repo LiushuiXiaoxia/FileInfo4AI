@@ -8,13 +8,13 @@
     <name>FileInfo4AI</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor url="https://github.com/LiushuiXiaoxia">LiushuiXiaoxia</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
     <description><![CDATA[
-        Enter short description for your plugin here.<br>
-        <em>most HTML tags may be used</em>
+        FileInfo4AI is an IntelliJ plugin designed to quickly collect and format file metadata. <br>
+        It is highly useful for providing code context to AI coding assistants or communicating with team members.
     ]]></description>
 
     <!-- Product and plugin compatibility requirements.
