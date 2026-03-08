@@ -50,6 +50,8 @@
                 description="复制当前文件信息及选中的行号"
                 icon="AllIcons.Actions.Copy">
             <add-to-group group-id="Floating.CodeToolbar" anchor="last"/>
+            <!-- 绑定到编辑器右键菜单 -->
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>
