@@ -31,7 +31,7 @@ object FileInfoCollector {
         val basePath = project.basePath ?: ""
         val fullPath = file.path
         val relativePath = if (basePath.isNotEmpty() && fullPath.startsWith(basePath)) {
-            fullPath.removePrefix(basePath)
+            fullPath.removePrefix(basePath).removePrefix("/")
         } else {
             fullPath
         }
