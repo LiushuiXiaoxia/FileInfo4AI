@@ -9,7 +9,9 @@ group = "dev.leonxia"
 version = providers.gradleProperty("PLUGIN_VERSION").getOrElse("1.0-SNAPSHOT")
 
 repositories {
-    maven { url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
+    if (System.getenv("CI") != "true") {
+        maven { url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
+    }
     mavenCentral()
     intellijPlatform {
         defaultRepositories()
