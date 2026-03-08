@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.leonxia"
-version = "1.0-SNAPSHOT"
+version = providers.gradleProperty("PLUGIN_VERSION").getOrElse("1.0-SNAPSHOT")
 
 repositories {
     maven { url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
