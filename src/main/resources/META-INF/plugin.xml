@@ -28,5 +28,21 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="FileRefToolWindow" factoryClass="dev.leonxia.aifileref.FileRefToolWindowFactory"
                     icon="AllIcons.Toolwindows.ToolWindowPalette"/>
+        
+        <notificationGroup id="FileRef.Notification"
+                           displayType="BALLOON"
+                           key="notification.group.name"
+                           bundle="messages.FileRefMessageBundle"/>
     </extensions>
+
+    <actions>
+        <action id="dev.leonxia.aifileref.CopyFileInfoAction"
+                class="dev.leonxia.aifileref.CopyFileInfoAction"
+                text="复制文件信息"
+                description="复制所选代码所在文件的信息"
+                icon="AllIcons.Actions.Copy">
+            <!-- 绑定到浮动工具栏 -->
+            <add-to-group group-id="Floating.CodeToolbar" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
