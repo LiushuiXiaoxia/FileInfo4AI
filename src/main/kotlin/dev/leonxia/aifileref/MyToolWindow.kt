@@ -2,48 +2,92 @@ package dev.leonxia.aifileref
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.intellij.openapi.application.readAction
+import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
+import kotlinx.coroutines.launch
 import org.jetbrains.jewel.bridge.addComposeTab
+import org.jetbrains.jewel.ui.component.DefaultButton
 import org.jetbrains.jewel.ui.component.OutlinedButton
 import org.jetbrains.jewel.ui.component.Text
-import kotlin.random.Random
+import java.awt.datatransfer.StringSelection
 
 class MyToolWindowFactory : ToolWindowFactory {
     override fun shouldBeAvailable(project: Project) = true
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         toolWindow.addComposeTab("FileRef", focusOnClickInside = true) {
-            LaunchedEffect(Unit) {
-                // initial data loading
-            }
-
-            MyToolWindowContent()
+            MyToolWindowContent(project)
         }
     }
 }
 
 @Composable
-private fun MyToolWindowContent() {
-    var labelText by remember { mutableStateOf("The random number is: ?") }
+private fun MyToolWindowContent(project: Project) {
+    val coroutineScope = rememberCoroutineScope()
+    var fileInfoText by remember { mutableStateOf("") }
+    var statusText by remember { mutableStateOf("打开一个文件后，点击按钮复制文件信息") }
 
-    Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(labelText)
+    Column(
+        Modifier.padding(16.dp).fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        DefaultButton(
+            onClick = {
+                coroutineScope.launch {
+                    val virtualFile = readAction {
+                        FileEditorManager.getInstance(project).selectedEditor?.file
+                    }
+                    if (virtualFile != null) {
+                        val info = readAction {
+                            FileInfoCollector.collectFileInfo(project, virtualFile)
+                        }
+                        val formatted = FileInfoCollector.formatFileInfo(info)
+                        fileInfoText = formatted
+                        CopyPasteManager.getInstance()
+                            .setContents(StringSelection(formatted))
+                        statusText = "✅ 文件信息已复制到剪切板"
+                    } else {
+                        fileInfoText = ""
+                        statusText = "⚠️ 当前没有打开的文件"
+                    }
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text("复制文件信息")
+        }
 
-        OutlinedButton(onClick = {
-            labelText = "The random number is: " + Random(System.currentTimeMillis()).nextInt(1000)
-        }) {
-            Text("Copy")
+        if (fileInfoText.isNotEmpty()) {
+            OutlinedButton(
+                onClick = {
+                    CopyPasteManager.getInstance()
+                        .setContents(StringSelection(fileInfoText))
+                    statusText = "✅ 文件信息已复制到剪切板"
+                },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("再次复制")
+            }
+        }
+
+        Text(statusText)
+
+        if (fileInfoText.isNotEmpty()) {
+            Text(fileInfoText)
         }
     }
 }
