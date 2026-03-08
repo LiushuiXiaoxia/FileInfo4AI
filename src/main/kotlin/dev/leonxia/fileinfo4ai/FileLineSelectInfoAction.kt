@@ -1,4 +1,4 @@
-package dev.leonxia.aifileref
+package dev.leonxia.fileinfo4ai
 
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType

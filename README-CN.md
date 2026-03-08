@@ -1,8 +1,8 @@
-# Ai-file-ref (IntelliJ Platform 插件)
+# FileInfo4AI (IntelliJ Platform 插件)
 
 [English Version](README.md)
 
-Ai-file-ref 是一个为 IntelliJ IDEA 和 Android Studio 等 JetBrains 系列 IDE 开发的插件，旨在快速提取和格式化文件的元数据和路径信息。当你在向 AI 编程助手提供上下文代码，或是与团队成员交流代码位置时，这个工具能帮你省去手动复制和编写文件来源的时间。
+FileInfo4AI 是一个为 IntelliJ IDEA 和 Android Studio 等 JetBrains 系列 IDE 开发的插件，旨在快速提取和格式化文件的元数据和路径信息。当你在向 AI 编程助手提供上下文代码，或是与团队成员交流代码位置时，这个工具能帮你省去手动复制和编写文件来源的时间。
 
 ## 核心功能
 

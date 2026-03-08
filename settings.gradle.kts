@@ -1,1 +1,1 @@
-rootProject.name = "ai-file-ref"
+rootProject.name = "FileInfo4AI"

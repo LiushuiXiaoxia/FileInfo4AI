@@ -1,4 +1,4 @@
-package dev.leonxia.aifileref
+package dev.leonxia.fileinfo4ai
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile

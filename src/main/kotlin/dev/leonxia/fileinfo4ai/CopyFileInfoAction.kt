@@ -1,4 +1,4 @@
-package dev.leonxia.aifileref
+package dev.leonxia.fileinfo4ai
 
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
