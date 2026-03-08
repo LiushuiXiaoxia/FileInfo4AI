@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.leonxia"
-version = providers.gradleProperty("PLUGIN_VERSION").getOrElse("1.0-SNAPSHOT")
+version = providers.gradleProperty("PLUGIN-VERSION").getOrElse("1.0-SNAPSHOT")
 
 repositories {
     if (System.getenv("CI") != "true") {
